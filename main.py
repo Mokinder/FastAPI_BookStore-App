@@ -4,16 +4,13 @@ import json
 from Model.Book import Book
 from uuid import uuid4
 from fastapi.encoders import jsonable_encoder
+from mangum import Mangum
 
 app = FastAPI()
+handler = Mangum(app)
 
 Books_File="books.json"
-
-Book_Database = [
-    "The Great Alexander",
-    "The History of Hitler",
-    "The Impact of World War I,II"
-]
+Book_Database = []
 
 if os.path.exists(Books_File):
     with open(Books_File,"r") as f:
